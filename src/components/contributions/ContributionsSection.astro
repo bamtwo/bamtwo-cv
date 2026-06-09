@@ -1,0 +1,44 @@
+---
+import ExperimentCard from './ExperimentCard.astro';
+
+const experiments = [
+  { name: 'fractal-db', description: 'Experimental append-only datastore using fractal tree indexing for time-series data from distributed sensor networks.', lang: 'Rust', stars: 342 },
+  { name: 'driftlog', description: 'Minimal structured logging daemon for ephemeral compute environments. Ships with a TUI that visualizes log entropy in real time.', lang: 'Go', stars: 187 },
+  { name: 'island-mesh', description: 'Reference implementation of a delay-tolerant mesh networking protocol designed for archipelagic communities.', lang: 'Rust', stars: 523 },
+  { name: 'null/signal-runtime', description: 'Personal knowledge management system disguised as a static site generator. Powers the null/signal blog since 2016.', lang: 'TypeScript', stars: 98 },
+  { name: 'growmap', description: 'Generative terrain engine for ecological simulation games. Uses real-world climate data to procedurally generate biomes.', lang: 'C++', stars: 276 },
+  { name: 'manifesto.md', description: 'A living document / static site template for personal manifestos. Forked by 400+ people who wanted to write their own.', lang: 'Markdown', stars: 401 },
+];
+---
+
+<section id="lab" class="lab-section section-container">
+  <h2 class="section-title">Open Source &amp; Lab</h2>
+  <div class="lab-grid">
+    {experiments.map((exp) => (
+      <ExperimentCard {...exp} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-10);
+  }
+
+  .lab-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .lab-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .lab-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

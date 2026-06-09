@@ -1,0 +1,85 @@
+:root {
+  --color-bg-base: #050A14;
+  --color-bg-surface: #0D1627;
+  --color-bg-elevated: #162035;
+  --color-accent-primary: #00E5FF;
+  --color-accent-secondary: #00FF94;
+  --color-accent-tertiary: #FF4D6D;
+  --color-accent-warm: #FFB347;
+  --color-text-primary: #F0F4FF;
+  --color-text-secondary: #8A9BC4;
+  --color-text-muted: #3D4F6E;
+  --color-border: #1E2D45;
+  --color-glow-primary: rgba(0, 229, 255, 0.15);
+  --color-glow-secondary: rgba(0, 255, 148, 0.12);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --z-base: 0;
+  --z-above: 10;
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-cursor: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+}
+
+:root[data-theme="dark"] {
+  --base: #050A14;
+  --surface: #0D1627;
+  --elevated: #162035;
+  --accent-primary: #00E5FF;
+  --accent-secondary: #00FF94;
+  --accent-tertiary: #FF4D6D;
+  --accent-warm: #FFB347;
+  --text-primary: #F0F4FF;
+  --text-secondary: #8A9BC4;
+  --text-muted: #3D4F6E;
+  --border: #1E2D45;
+  --glow-primary: rgba(0, 229, 255, 0.15);
+  --glow-secondary: rgba(0, 255, 148, 0.12);
+  --glass-bg: rgba(13, 22, 39, 0.6);
+  --glass-border: rgba(30, 45, 69, 0.5);
+  --glass-blur: 12px;
+  --glass-tint: rgba(0, 229, 255, 0.03);
+  --noise-opacity: 0.03;
+}
+
+:root[data-theme="light"] {
+  --base: #F5F0E8;
+  --surface: #FFFFFF;
+  --elevated: #EDE8DF;
+  --accent-primary: #0077B6;
+  --accent-secondary: #2D9B6F;
+  --accent-tertiary: #D62839;
+  --accent-warm: #E07A17;
+  --text-primary: #0F1923;
+  --text-secondary: #4A5568;
+  --text-muted: #9AA5B4;
+  --border: #D4C9B8;
+  --glow-primary: rgba(0, 119, 182, 0.12);
+  --glow-secondary: rgba(45, 155, 111, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(212, 201, 184, 0.4);
+  --glass-blur: 8px;
+  --glass-tint: rgba(0, 119, 182, 0.02);
+  --noise-opacity: 0.02;
+}

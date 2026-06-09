@@ -1,0 +1,82 @@
+---
+const row1 = ['Rust', 'TypeScript', 'Python', 'WebAssembly', 'CUDA', 'Zig', 'Nix', 'OpenGL', 'Vulkan', 'Docker', 'Kubernetes', 'GraphQL'];
+const row2 = ['D3.js', 'GSAP', 'Three.js', 'Astro', 'Tailwind', 'PostGIS', 'TensorFlow', 'PyTorch', 'Solidity', 'IPFS', 'MQTT', 'MIDI'];
+---
+
+<div class="marquee-container">
+  <div class="marquee-row marquee-row-left">
+    <div class="marquee-track">
+      {row1.concat(row1).map((tag) => (
+        <span class="marquee-tag">{tag}</span>
+      ))}
+    </div>
+  </div>
+  <div class="marquee-row marquee-row-right">
+    <div class="marquee-track">
+      {row2.concat(row2).map((tag) => (
+        <span class="marquee-tag">{tag}</span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    margin-top: var(--space-8);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .marquee-row {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: var(--space-3);
+    white-space: nowrap;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .marquee-row-left .marquee-track {
+    animation-name: marquee-left;
+  }
+
+  .marquee-row-right .marquee-track {
+    animation-name: marquee-right;
+  }
+
+  .marquee-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: var(--space-1) var(--space-3);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+</style>

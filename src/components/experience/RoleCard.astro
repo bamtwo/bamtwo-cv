@@ -1,0 +1,151 @@
+---
+export interface Props {
+  company: string;
+  role: string;
+  startDate: string;
+  endDate: string;
+  achievements: string[];
+  techStack: string[];
+  side: 'left' | 'right';
+}
+
+const { company, role, startDate, endDate, achievements, techStack, side } = Astro.props;
+---
+
+<div class={`role-card role-card-${side}`} data-interactive>
+  <div class="role-card-inner glass-panel">
+    <div class="role-logo-placeholder" aria-hidden="true">
+      <span>{company.charAt(0)}</span>
+    </div>
+    <div class="role-content">
+      <h3 class="role-title">{role}</h3>
+      <p class="role-company">{company}</p>
+      <p class="role-dates">{startDate} — {endDate}</p>
+      <ul class="role-achievements">
+        {achievements.map((a) => <li>{a}</li>)}
+      </ul>
+      <div class="role-tech-stack">
+        {techStack.map((tech) => (
+          <span class="role-tech-pill">{tech}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .role-card {
+    position: relative;
+    width: 100%;
+    perspective: 1000px;
+    margin-bottom: var(--space-8);
+  }
+
+  .role-card-inner {
+    padding: var(--space-6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+  }
+
+  .role-card-inner:hover {
+    transform: translateY(-4px) rotateX(2deg);
+    box-shadow: 0 12px 40px var(--glow-primary);
+  }
+
+  .role-logo-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    margin-bottom: var(--space-4);
+  }
+
+  .role-logo-placeholder span {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-xl);
+    color: var(--accent-primary);
+  }
+
+  .role-title {
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .role-company {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--accent-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .role-dates {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .role-achievements {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .role-achievements li {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .role-achievements li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-secondary);
+  }
+
+  .role-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .role-tech-pill {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    background: var(--elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: var(--space-1) var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .role-card {
+      width: calc(50% - 30px);
+    }
+
+    .role-card-left {
+      margin-right: auto;
+    }
+
+    .role-card-right {
+      margin-left: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .role-card-inner:hover { transform: none; box-shadow: none; }
+  }
+</style>

@@ -1,0 +1,200 @@
+---
+---
+
+<section id="contact" class="contact-section">
+  <div class="contact-bg">
+    {Array.from({ length: 12 }).map((_, idx) => (
+      <span class="contact-bg-text" style={`font-size: ${2 + idx * 0.3}rem; opacity: ${0.03 + idx * 0.003}; left: ${idx * 7}%; top: ${idx * 8}%; transform: rotate(${idx * 3}deg);`}>
+        FIND ME
+      </span>
+    ))}
+  </div>
+
+  <div class="contact-content">
+    <h2 class="contact-heading">Make Contact</h2>
+
+    <a href="mailto:bam@bamtwo.io" class="contact-email" data-scramble data-email="bam@bamtwo.io">
+      bam@bamtwo.io
+    </a>
+
+    <div class="contact-socials">
+      <a href="https://github.com/bamtwo" target="_blank" rel="noopener" data-interactive>GitHub</a>
+      <span class="contact-sep">/</span>
+      <a href="https://twitter.com/bamtwo" target="_blank" rel="noopener" data-interactive>@bamtwo</a>
+      <span class="contact-sep">/</span>
+      <a href="https://veranet.io/@bamtwo" target="_blank" rel="noopener" data-interactive>Veranet</a>
+    </div>
+
+    <form class="contact-form" onsubmit={`this.action = 'mailto:bam@bamtwo.io?subject=' + encodeURIComponent(this._subject?.value || '') + '&body=' + encodeURIComponent(this._msg?.value || ''); return true;`}>
+      <input type="hidden" name="_subject" value="" />
+      <input type="text" name="name" placeholder="Your name" class="form-input" />
+      <input type="email" name="email" placeholder="Your email" class="form-input" />
+      <textarea name="_msg" placeholder="What's on your mind?" class="form-textarea" rows="4"></textarea>
+      <button type="submit" class="form-submit" data-interactive>Send Signal →</button>
+    </form>
+
+    <div class="contact-meta">
+      <span>Timezone: UTC+8 — Veran Isles Time</span>
+      <span class="contact-dot">•</span>
+      <span>Available for collaborations</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    position: relative;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: var(--space-8);
+  }
+
+  .contact-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .contact-bg-text {
+    position: absolute;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text-primary);
+    animation: spin-slow 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .contact-content {
+    position: relative;
+    z-index: var(--z-above);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .contact-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .contact-email {
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-2xl), 5vw, var(--text-5xl));
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: var(--tracking-tight);
+    transition: color 0.3s;
+    word-break: break-all;
+    cursor: pointer;
+  }
+
+  .contact-email:hover {
+    color: var(--accent-secondary);
+  }
+
+  .contact-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .contact-socials a {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+
+  .contact-socials a:hover { color: var(--accent-primary); }
+
+  .contact-sep {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  .form-input, .form-textarea {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--accent-primary);
+  }
+
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--base);
+    background: var(--accent-primary);
+    border: none;
+    border-radius: var(--radius-full);
+    padding: var(--space-3) var(--space-6);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    transition: background 0.2s, transform 0.2s;
+    font-weight: 600;
+  }
+
+  .form-submit:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-1px);
+  }
+
+  .contact-meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .contact-dot { color: var(--accent-secondary); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-bg-text { animation: none; }
+  }
+</style>
+
+<script>
+  import { initScramble } from '../../scripts/scramble-email';
+
+  const emailEl = document.querySelector('[data-scramble]') as HTMLElement;
+  if (emailEl) initScramble(emailEl);
+</script>

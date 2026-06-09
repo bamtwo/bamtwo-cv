@@ -1,0 +1,133 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  techStack: string[];
+  gradient: string;
+  index: number;
+}
+
+const { title, description, techStack, gradient, index } = Astro.props;
+---
+
+<div
+  class="project-card"
+  style={`background: ${gradient}`}
+  data-project-card
+  data-interactive
+>
+  <div class="project-card-inner">
+    <span class="project-index">{String(index).padStart(2, '0')}</span>
+    <h3 class="project-title">{title}</h3>
+    <p class="project-desc">{description}</p>
+    <div class="project-tech">
+      {techStack.map((tech) => (
+        <span class="project-tech-pill">{tech}</span>
+      ))}
+    </div>
+    <div class="project-links">
+      <a href="#" class="project-link" data-interactive>Live →</a>
+      <a href="#" class="project-link" data-interactive>Repo →</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .project-card {
+    flex: 0 0 min(85vw, 550px);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease;
+    margin-right: var(--space-6);
+  }
+
+  .project-card-inner {
+    padding: var(--space-8);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .project-index {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    color: rgba(255,255,255,0.2);
+    line-height: 1;
+    margin-bottom: var(--space-4);
+  }
+
+  .project-title {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: var(--space-4);
+  }
+
+  .project-desc {
+    font-size: var(--text-base);
+    color: rgba(255,255,255,0.8);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+    max-width: 45ch;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .project-tech-pill {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-full);
+    padding: var(--space-1) var(--space-3);
+    backdrop-filter: blur(4px);
+  }
+
+  .project-links {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    transition: opacity 0.2s;
+  }
+
+  .project-link:hover {
+    opacity: 0.7;
+    color: #fff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card { transform: none !important; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-project-card]').forEach((el) => {
+    const card = el as HTMLElement;
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale(1)';
+    });
+  });
+</script>

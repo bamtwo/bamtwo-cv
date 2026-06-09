@@ -1,0 +1,64 @@
+---
+---
+
+<h1 class="hero-name" id="hero-name">
+  <span class="hero-name-letter" style="animation-delay: 0s">B</span>
+  <span class="hero-name-letter" style="animation-delay: 0.05s">a</span>
+  <span class="hero-name-letter" style="animation-delay: 0.1s">m</span>
+  <span class="hero-name-letter hero-name-space" style="animation-delay: 0.15s">&nbsp;</span>
+  <span class="hero-name-letter" style="animation-delay: 0.2s">T</span>
+  <span class="hero-name-letter" style="animation-delay: 0.25s">w</span>
+  <span class="hero-name-letter" style="animation-delay: 0.3s">o</span>
+</h1>
+
+<style>
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, var(--text-8xl));
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-primary);
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-name-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: letter-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-play-state: paused;
+  }
+
+  .hero-name-letter.visible {
+    animation-play-state: running;
+  }
+
+  .hero-name-space {
+    width: 0.5em;
+  }
+
+  @keyframes letter-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-name-letter {
+      opacity: 1;
+      transform: translateY(0);
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const letters = document.querySelectorAll('.hero-name-letter');
+  setTimeout(() => {
+    letters.forEach((l) => l.classList.add('visible'));
+  }, 300);
+</script>

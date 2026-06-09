@@ -1,0 +1,51 @@
+---
+const links = [
+  { label: 'GitHub', href: 'https://github.com/bamtwo' },
+  { label: 'Twitter', href: 'https://twitter.com/bamtwo' },
+  { label: 'Mastodon', href: 'https://mastodon.social/@bamtwo' },
+  { label: 'Veranet', href: 'https://veranet.io/@bamtwo' },
+];
+---
+
+<div class="social-links">
+  {links.map((link) => (
+    <a
+      href={link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-link"
+      data-interactive
+    >
+      {link.label}
+    </a>
+  ))}
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    gap: var(--space-6);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .social-link:hover {
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    background: var(--glow-primary);
+    transform: translateY(-2px);
+  }
+</style>

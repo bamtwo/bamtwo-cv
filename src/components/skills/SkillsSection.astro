@@ -1,0 +1,74 @@
+---
+const skillCategories = [
+  { name: 'Systems Architecture', skills: 'Rust • C • Nix • Linux Kernel • Docker • Kubernetes • Distributed Systems • Performance Tuning' },
+  { name: 'Generative Design', skills: 'L-systems • Multi-agent Simulation • Three.js • WebGL • OpenGL • Parametric Modeling • Creative Coding' },
+  { name: 'Acoustic Data Engineering', skills: 'FFT • Signal Processing • Sensor Networks • Real-time DSP • Hydrophone Arrays • Time-series Analysis' },
+  { name: 'AI/ML Research', skills: 'PyTorch • TensorFlow • Autoencoders • Transformers • GNNs • Ecological Modeling • Computer Vision' },
+  { name: 'Protocol Design', skills: 'Consensus Algorithms • BFT • Mesh Networks • libp2p • Noise Protocol • Cryptographic Primitives • Formal Verification' },
+  { name: 'Creative Tooling', skills: 'GSAP • D3.js • Canvas • WebAssembly • MIDI • Game Engines • Interactive Installations • UI Systems' },
+];
+---
+
+<section id="skills" class="skills-section section-container">
+  <h2 class="section-title">Skills Constellation</h2>
+  <div class="skills-grid" data-skills-grid>
+    {skillCategories.map((cat) => (
+      <div class="skill-category-card glass-panel" data-interactive>
+        <h3 class="skill-category-name">{cat.name}</h3>
+        <p class="skill-category-items">{cat.skills}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-12);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .skill-category-card {
+    padding: var(--space-6);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .skill-category-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+  }
+
+  .skill-category-name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .skill-category-items {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  @media (min-width: 640px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .skills-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

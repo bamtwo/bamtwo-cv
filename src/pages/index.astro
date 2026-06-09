@@ -1,0 +1,100 @@
+---
+import '../styles/tokens.css';
+import '../styles/typography.css';
+import '../styles/animations.css';
+import '../styles/global.css';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/nav/Navigation.astro';
+import CustomCursor from '../components/cursor/CustomCursor.astro';
+import HeroSection from '../components/hero/HeroSection.astro';
+import AboutSection from '../components/about/AboutSection.astro';
+import ExperienceSection from '../components/experience/ExperienceSection.astro';
+import SkillsSection from '../components/skills/SkillsSection.astro';
+import ProjectsSection from '../components/projects/ProjectsSection.astro';
+import ContributionsSection from '../components/contributions/ContributionsSection.astro';
+import EducationSection from '../components/education/EducationSection.astro';
+import SpeakingSection from '../components/speaking/SpeakingSection.astro';
+import ContactSection from '../components/contact/ContactSection.astro';
+---
+
+<BaseLayout>
+  <CustomCursor />
+  <Navigation />
+
+  <main>
+    <HeroSection />
+    <AboutSection />
+    <ExperienceSection />
+    <SkillsSection />
+    <ProjectsSection />
+    <ContributionsSection />
+    <EducationSection />
+    <SpeakingSection />
+    <ContactSection />
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner section-container">
+      <p class="footer-text">Bam Two &mdash; null/signal since 2009</p>
+      <p class="footer-sub">Built with Astro, GSAP, and <span class="footer-heart">oxygen</span>.</p>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bam Two",
+      "alternateName": "@bamtwo",
+      "jobTitle": "Interdisciplinary Creative Technologist & Systems Architect",
+      "description": "Building at the intersection of emergent systems, synthetic intelligence, and the aesthetics of the uncanny.",
+      "url": "https://bamtwo.io",
+      "sameAs": [
+        "https://github.com/bamtwo",
+        "https://twitter.com/bamtwo",
+        "https://mastodon.social/@bamtwo"
+      ]
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: var(--space-8) 0;
+  }
+
+  .footer-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .footer-text {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .footer-sub {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  .footer-heart {
+    color: var(--accent-tertiary);
+  }
+</style>
+
+<script>
+  import { initTheme } from '../scripts/theme';
+  import { initGSAP } from '../scripts/gsap-init';
+  import { initLenis } from '../scripts/lenis-init';
+
+  initTheme();
+  initGSAP();
+  initLenis();
+</script>

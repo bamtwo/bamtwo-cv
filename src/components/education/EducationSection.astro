@@ -1,0 +1,151 @@
+---
+---
+
+<section id="education" class="education-section section-container">
+  <h2 class="section-title">Education &amp; Learning</h2>
+
+  <div class="edu-grid">
+    <div class="edu-card glass-panel" data-interactive>
+      <div class="edu-card-badge shimmer-badge">Degree</div>
+      <h3 class="edu-title">B.Sc. Computational Ecology</h3>
+      <p class="edu-institution">University of the Veran Isles — Main Atoll</p>
+      <p class="edu-dates">2008 — 2011</p>
+      <p class="edu-desc">Focused on agent-based ecological simulation and bioacoustic signal processing. Thesis on distributed sensor networks for coral reef health monitoring.</p>
+    </div>
+
+    <div class="edu-card glass-panel" data-interactive>
+      <div class="edu-card-badge shimmer-badge">Residency</div>
+      <h3 class="edu-title">Artist-Technologist Residency</h3>
+      <p class="edu-institution">Institute for Algorithmic Nature — Rotterdam</p>
+      <p class="edu-dates">2016 (6 months)</p>
+      <p class="edu-desc">Developed generative systems for public installations exploring mycelial network aesthetics and decentralized decision-making visualizations.</p>
+    </div>
+
+    <div class="edu-card glass-panel" data-interactive>
+      <div class="edu-card-badge shimmer-badge">Residency</div>
+      <h3 class="edu-title">Distributed Systems Research Residency</h3>
+      <p class="edu-institution">Pacifica Protocol Lab — Wellington</p>
+      <p class="edu-dates">2018 (3 months)</p>
+      <p class="edu-desc">Collaborated on formal verification of mesh networking protocols. Co-authored paper on Byzantine fault tolerance in low-bandwidth environments.</p>
+    </div>
+  </div>
+
+  <h3 class="curriculum-heading">The Real Curriculum</h3>
+  <div class="curriculum-grid">
+    {['Structure and Interpretation of Computer Programs', 'The Death and Life of Great American Cities — Jane Jacobs', 'Gödel, Escher, Bach — Douglas Hofstadter', 'Building a router from scavenged parts on a 14.4kbps satellite link', 'A Pattern Language — Christopher Alexander', 'Six months in total digital silence — just notebooks, sensors, and the reef'].map((item) => (
+      <div class="curriculum-card glass-panel" data-interactive>{item}</div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-10);
+  }
+
+  .edu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-bottom: var(--space-16);
+  }
+
+  .edu-card {
+    padding: var(--space-6);
+    transition: transform 0.3s ease;
+  }
+
+  .edu-card:hover { transform: translateY(-2px); }
+
+  .edu-card-badge {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--accent-primary);
+    background: var(--glow-primary);
+    border: 1px solid var(--accent-primary);
+    border-radius: var(--radius-full);
+    padding: var(--space-1) var(--space-3);
+    display: inline-block;
+    margin-bottom: var(--space-3);
+  }
+
+  .shimmer-badge {
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-warm), var(--accent-primary));
+    background-size: 200% 100%;
+    animation: holographic-shimmer 3s linear infinite;
+    color: var(--base);
+    border-color: transparent;
+  }
+
+  @keyframes holographic-shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  .edu-title {
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .edu-institution {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--accent-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .edu-dates {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .edu-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .curriculum-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--accent-secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  .curriculum-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .curriculum-card {
+    padding: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .curriculum-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-secondary);
+  }
+
+  @media (min-width: 640px) {
+    .curriculum-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .curriculum-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shimmer-badge { animation: none; }
+  }
+</style>

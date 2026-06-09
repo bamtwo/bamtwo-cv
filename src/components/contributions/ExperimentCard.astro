@@ -1,0 +1,125 @@
+---
+export interface Props {
+  name: string;
+  description: string;
+  lang: string;
+  stars: number;
+}
+
+const { name, description, lang, stars } = Astro.props;
+const barHeights = Array.from({ length: 7 }, () => Math.floor(Math.random() * 16) + 2);
+---
+
+<div class="exp-card glass-panel" data-interactive>
+  <div class="exp-header">
+    <h3 class="exp-name">{name}</h3>
+    <span class="exp-stars">{stars} *</span>
+  </div>
+  <p class="exp-desc">{description}</p>
+  <div class="exp-footer">
+    <span class="exp-lang">{lang}</span>
+    <div class="exp-graph" data-activity-graph>
+      <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+        {barHeights.map((h, i) => (
+          <rect
+            x={i * 14 + 2}
+            y={20 - h}
+            width="10"
+            height="0"
+            rx="1.5"
+            fill="var(--accent-primary)"
+            data-bar
+            data-target={String(h)}
+          />
+        ))}
+      </svg>
+    </div>
+  </div>
+</div>
+
+<style>
+  .exp-card {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .exp-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .exp-name {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--accent-primary);
+  }
+
+  .exp-stars {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--accent-warm);
+    white-space: nowrap;
+  }
+
+  .exp-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .exp-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .exp-lang {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  .exp-graph {
+    width: 80px;
+    height: 16px;
+  }
+
+  .exp-graph svg { width: 100%; height: 100%; }
+</style>
+
+<script>
+  function animateBars() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const bars = entry.target.querySelectorAll<SVGRectElement>('[data-bar]');
+        bars.forEach((bar) => {
+          const h = parseInt(bar.dataset.target || '0');
+          if (reducedMotion) {
+            bar.setAttribute('height', String(h));
+          } else {
+            bar.setAttribute('height', String(h));
+            bar.style.transition = `height 0.6s ease-out ${Math.random() * 0.4}s`;
+            requestAnimationFrame(() => { bar.setAttribute('height', String(h)); });
+          }
+        });
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('[data-activity-graph]').forEach((g) => observer.observe(g));
+  }
+  animateBars();
+</script>

@@ -1,0 +1,91 @@
+---
+
+---
+
+<div class="portrait" data-interactive>
+  <div class="portrait-bg">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="portrait-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:var(--accent-primary);stop-opacity:0.3" />
+          <stop offset="100%" style="stop-color:var(--accent-secondary);stop-opacity:0.2" />
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="85" r="45" fill="url(#portrait-grad)" stroke="var(--accent-primary)" stroke-width="1.5"/>
+      <ellipse cx="100" cy="175" rx="60" ry="30" fill="url(#portrait-grad)" stroke="var(--accent-primary)" stroke-width="1"/>
+      <circle cx="85" cy="78" r="4" fill="var(--accent-primary)" />
+      <circle cx="115" cy="78" r="4" fill="var(--accent-primary)" />
+      <path d="M85 92 Q100 102 115 92" stroke="var(--accent-primary)" stroke-width="1.5" fill="none" />
+    </svg>
+  </div>
+  <div class="portrait-glitch portrait-glitch-1" aria-hidden="true"></div>
+  <div class="portrait-glitch portrait-glitch-2" aria-hidden="true"></div>
+</div>
+
+<style>
+  .portrait {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .portrait-bg {
+    width: 100%;
+    height: 100%;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portrait-bg svg {
+    width: 80%;
+    height: 80%;
+  }
+
+  .portrait-glitch {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: var(--surface);
+    transition: opacity 0.1s;
+  }
+
+  .portrait:hover .portrait-glitch-1 {
+    opacity: 0.08;
+    animation: glitch-clip-1 0.4s steps(2) infinite;
+    background: var(--accent-primary);
+  }
+
+  .portrait:hover .portrait-glitch-2 {
+    opacity: 0.06;
+    animation: glitch-clip-2 0.3s steps(2) infinite;
+    background: var(--accent-tertiary);
+  }
+
+  @keyframes glitch-clip-1 {
+    0%, 100% { clip-path: inset(0 0 0 0); }
+    20% { clip-path: inset(20% 0 60% 0); }
+    40% { clip-path: inset(40% 0 40% 0); }
+    60% { clip-path: inset(60% 0 20% 0); }
+    80% { clip-path: inset(10% 0 70% 0); }
+  }
+
+  @keyframes glitch-clip-2 {
+    0%, 100% { clip-path: inset(0 0 0 0); }
+    25% { clip-path: inset(10% 0 70% 0); }
+    45% { clip-path: inset(40% 0 30% 0); }
+    65% { clip-path: inset(60% 0 10% 0); }
+    85% { clip-path: inset(20% 0 50% 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portrait:hover .portrait-glitch-1,
+    .portrait:hover .portrait-glitch-2 { animation: none; opacity: 0; }
+  }
+</style>

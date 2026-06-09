@@ -1,0 +1,61 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import PortraitPlaceholder from './PortraitPlaceholder.astro';
+import ManifestoText from './ManifestoText.astro';
+import KineticStats from './KineticStats.astro';
+import TechMarquee from './TechMarquee.astro';
+---
+
+<section id="about" class="about-section section-container">
+  <h2 class="section-title">About</h2>
+  <div class="about-grid">
+    <div class="about-portrait-col">
+      <PortraitPlaceholder />
+    </div>
+    <div class="about-text-col">
+      <StatusBadge />
+      <ManifestoText />
+    </div>
+  </div>
+  <KineticStats />
+  <TechMarquee />
+</section>
+
+<style>
+  .section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-10);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .about-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .about-portrait-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .about-portrait-col {
+      flex: 0 0 40%;
+      position: sticky;
+      top: var(--space-24);
+    }
+
+    .about-text-col {
+      flex: 1;
+    }
+  }
+</style>

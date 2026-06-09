@@ -1,0 +1,149 @@
+---
+import RoleCard from './RoleCard.astro';
+
+const roles = [
+  {
+    company: 'Pelagius Systems',
+    role: 'Distributed Sensor Networks Lead',
+    startDate: '2023',
+    endDate: 'Present',
+    achievements: [
+      'Designed a distributed acoustic sensor mesh for deep-sea biodiversity monitoring across the Veran Trench, processing 40TB/day of hydrophone data with custom FFT pipelines.',
+      'Built real-time anomaly detection system using convolutional autoencoders, reducing false-positive cetacean alerts by 73%.',
+      'Led a team of 6 engineers across three time zones; established remote-first async culture from scratch.',
+    ],
+    techStack: ['Rust', 'Python', 'MQTT', 'Redis', 'Docker'],
+  },
+  {
+    company: 'Morphogen Design Lab',
+    role: 'Generative Systems Architect',
+    startDate: '2020',
+    endDate: '2023',
+    achievements: [
+      'Developed generative urban infrastructure design tools using multi-agent simulations and Lindenmayer systems for adaptive city planning in flood-prone coastal regions.',
+      'Created the MorphoSDK — an open-source framework for L-system based parametric modeling, adopted by 12 research institutions across Southeast Asia.',
+      'Key contributor to the Sangkalan Resilient Grid project, designing fractal power distribution networks for post-disaster rapid deployment.',
+    ],
+    techStack: ['Rust', 'WebAssembly', 'Three.js', 'OpenGL', 'PostGIS'],
+  },
+  {
+    company: 'Eidolon Engine Collective',
+    role: 'Lead Engine Developer (Independent)',
+    startDate: '2017',
+    endDate: '2020',
+    achievements: [
+      'Built Eidolon — a cross-platform game engine from scratch targeting embedded and low-power devices, with a custom ECS, render pipeline, and networking layer.',
+      'Engine used in 3 shipped independent titles and 7 art installations including the award-winning "Mycelium Memory" at the Ars Artificialis Biennial.',
+      'Open-sourced core engine under a permissive license; community grew to 180 contributors with active forks in Brazil and Japan.',
+    ],
+    techStack: ['C', 'Rust', 'Vulkan', 'Lua', 'Nix'],
+  },
+  {
+    company: 'Kairos Protocol Foundation',
+    role: 'Cryptographic Protocol Researcher',
+    startDate: '2014',
+    endDate: '2017',
+    achievements: [
+      'Co-authored the Kairos consensus protocol — a BFT variant optimized for intermittent connectivity environments, designed for mesh networks in remote archipelagos.',
+      'Implemented prototype node software that maintained consensus viability at 67% packet loss, validated through simulation across 10,000 virtual nodes.',
+      'Published technical whitepaper (co-authored with Dr. S. Nakamura, Tokyo Metropolitan) cited by 40+ subsequent papers in delay-tolerant networking.',
+    ],
+    techStack: ['Go', 'Rust', 'libp2p', 'Noise Protocol', 'Nix'],
+  },
+];
+---
+
+<section id="experience" class="experience-section section-container">
+  <h2 class="section-title">Experience</h2>
+  <div class="timeline">
+    <svg class="timeline-line" viewBox="0 0 4 100" preserveAspectRatio="none">
+      <line x1="2" y1="0" x2="2" y2="100" stroke="var(--border)" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <line class="timeline-line-draw" x1="2" y1="0" x2="2" y2="100" stroke="var(--accent-primary)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-dasharray="1" stroke-dashoffset="1" />
+    </svg>
+    <div class="timeline-cards">
+      {roles.map((role, i) => (
+        <RoleCard {...role} side={i % 2 === 0 ? 'left' : 'right'} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-12);
+  }
+
+  .timeline {
+    position: relative;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    height: 100%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .timeline-line-draw {
+    transition: stroke-dashoffset 0.3s;
+  }
+
+  .timeline-cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 767px) {
+    .timeline-line { left: 20px; }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotion) {
+    const drawLine = document.querySelector('.timeline-line-draw') as SVGLineElement;
+    if (drawLine) {
+      const len = drawLine.getTotalLength?.() || 1000;
+      drawLine.setAttribute('stroke-dasharray', String(len));
+      drawLine.setAttribute('stroke-dashoffset', String(len));
+
+      ScrollTrigger.create({
+        trigger: '.timeline',
+        start: 'top 80%',
+        end: 'bottom bottom',
+        scrub: 0.5,
+        onUpdate: (self) => {
+          drawLine.style.strokeDashoffset = String(len * (1 - self.progress));
+        },
+      });
+    }
+
+    const cards = gsap.utils.toArray<HTMLElement>('.role-card');
+    cards.forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1, y: 0, duration: 0.8,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: i * 0.1,
+        }
+      );
+    });
+  }
+</script>

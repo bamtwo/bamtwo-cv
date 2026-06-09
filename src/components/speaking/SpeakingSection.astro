@@ -1,0 +1,146 @@
+---
+const talks = [
+  { conference: 'Emergence Summit', city: 'Reykjavík', title: 'Fractal Infrastructure: Designing Cities That Grow Like Forests', date: '2024' },
+  { conference: 'Synthetic Ecologies', city: 'Singapore', title: 'Listening to the Deep: Acoustic Data as Ecological Memory', date: '2023' },
+  { conference: 'Decentralized Futures Forum', city: 'Nairobi', title: 'The Kairos Protocol: Consensus on the Edge of Connectivity', date: '2022' },
+  { conference: 'Ars Artificialis', city: 'Berlin', title: 'Mycelium Memory: Computation as Decomposition', date: '2021' },
+];
+
+const blogPosts = [
+  { title: 'On Building Software in the Dark', date: '2024-03', abstract: '"The most important code I ever wrote ran on a machine with no screen — just GPIO pins and a 16x2 character LCD. You learn different things about architecture when you can\'t see the stack."' },
+  { title: 'Why I Stopped Optimizing and Started Listening', date: '2023-09', abstract: 'How six months of field recording on the reef changed my relationship with signal processing, and why the best algorithms are the ones that get out of the way.' },
+  { title: 'The Post-Scarcity Toolkit', date: '2022-05', abstract: 'A survey of open-source tools that cost nothing to run, nothing to deploy, and can be maintained by a single person with a satellite connection. These are the tools that matter.' },
+  { title: 'What I Learned Reverse-Engineering Salvaged Drones at 14', date: '2021-12', abstract: 'Firmware is just archaeology with a hex editor. The drones that washed up on the beaches of the Veran Isles taught me more about systems thinking than any degree program.' },
+  { title: 'null/signal: Ten Years In', date: '2019-01', abstract: 'Reflecting on a decade of writing about technology outside the attention economy. No newsletter, no social strategy, just signal in the noise.' },
+];
+
+const papers = [
+  { title: 'Byzantine Fault Tolerance in Delay-Tolerant Mesh Networks', coauthors: 'S. Nakamura, B. Two', venue: 'Proc. of the Pacific Symposium on Distributed Systems, 2019' },
+  { title: 'Lindenmayer Systems for Adaptive Urban Zoning', coauthors: 'B. Two, A. van der Meer', venue: 'Journal of Generative Design & Architecture, Vol. 12, 2021' },
+];
+---
+
+<section id="speaking" class="speaking-section section-container">
+  <h2 class="section-title">Speaking &amp; Writing</h2>
+
+  <div class="masonry">
+    <div class="masonry-col">
+      <h3 class="subsection-heading">Talks</h3>
+      {talks.map((talk) => (
+        <div class="item-card glass-panel" data-interactive>
+          <p class="item-venue">{talk.conference}</p>
+          <p class="item-city">{talk.city}</p>
+          <h4 class="item-title">{talk.title}</h4>
+          <p class="item-date">{talk.date}</p>
+        </div>
+      ))}
+    </div>
+    <div class="masonry-col">
+      <h3 class="subsection-heading">null/signal</h3>
+      {blogPosts.map((post) => (
+        <div class="item-card glass-panel" data-interactive>
+          <h4 class="item-title">{post.title}</h4>
+          <p class="item-abstract">{post.abstract}</p>
+          <p class="item-date">{post.date}</p>
+        </div>
+      ))}
+    </div>
+    <div class="masonry-col">
+      <h3 class="subsection-heading">Papers</h3>
+      {papers.map((paper) => (
+        <div class="item-card glass-panel" data-interactive>
+          <h4 class="item-title">{paper.title}</h4>
+          <p class="item-coauthors">{paper.coauthors}</p>
+          <p class="item-date">{paper.venue}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-10);
+  }
+
+  .masonry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .masonry-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .subsection-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .item-card {
+    padding: var(--space-5);
+    transition: transform 0.3s ease;
+  }
+
+  .item-card:hover { transform: translateY(-2px); }
+
+  .item-venue {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .item-city {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .item-title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+    line-height: var(--leading-snug);
+  }
+
+  .item-abstract {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+    margin-bottom: var(--space-2);
+  }
+
+  .item-coauthors {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-1);
+  }
+
+  .item-date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .masonry { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .masonry { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
