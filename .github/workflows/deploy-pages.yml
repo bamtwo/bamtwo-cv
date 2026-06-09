@@ -33,10 +33,8 @@ jobs:
 
       - name: Build for GitHub Pages
         env:
-          SITE_URL: https://bamtwo.github.io/bamtwo-cv
-        run: |
-          echo "export default defineConfig({...base: '/bamtwo-cv/'})" | cat
-          pnpm build
+          SITE_BASE: /bamtwo-cv/
+        run: pnpm build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
