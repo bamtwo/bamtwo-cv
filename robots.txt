@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bamtwo.io/sitemap-0.xml
